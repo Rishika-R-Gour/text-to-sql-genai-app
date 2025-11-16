@@ -2,6 +2,16 @@
 
 A powerful web application that converts natural language queries into SQL statements using Google's Gemini AI, featuring multi-agent analysis and role-based authentication.
 
+## 🌟 Live Demo
+
+🔗 **[Try the Live App](https://text-to-sql-genai-app-8lt2fj7tclwh4tpmbyt5fj.streamlit.app/)**
+
+Experience the application in action! The live demo includes:
+- Sample e-commerce dataset with 1,693+ records
+- All authentication roles (Guest/Viewer/Analyst/Admin)
+- Real-time SQL generation and execution
+- Interactive data visualizations
+
 ## ✨ Key Features
 
 - **🧠 AI-Powered SQL Generation**: Uses Google Gemini 2.5 Flash for natural language to SQL conversion

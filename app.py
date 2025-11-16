@@ -465,10 +465,20 @@ def get_schema():
 
 # Configure Gemini
 def setup_gemini():
+    # Try to get API key from environment variables or Streamlit secrets
     api_key = os.getenv('GEMINI_API_KEY')
+    
+    # If not found in env vars, try Streamlit secrets
+    if not api_key:
+        try:
+            api_key = st.secrets["GEMINI_API_KEY"]
+        except (KeyError, FileNotFoundError):
+            pass
+    
     if not api_key:
         st.error("🚨 GEMINI_API_KEY not found!")
-        st.info("Add your API key to .env file: `GEMINI_API_KEY=your_key_here`")
+        st.info("For local development: Add your API key to .env file: `GEMINI_API_KEY=your_key_here`")
+        st.info("For Streamlit Cloud: Add GEMINI_API_KEY to your app's Secrets in the Streamlit dashboard")
         return None
     
     try:
