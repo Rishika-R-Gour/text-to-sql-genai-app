@@ -1,0 +1,21 @@
+supplier_id,supplier_name,contact_person,email,phone,address,city,country
+1,TechCorp Solutions,Contact_1,contact1@techcorpsolutions.com,+43-350-2639,6783 Business St,Munich,Germany
+2,Mobile Masters Inc,Contact_2,contact2@mobilemastersinc.com,+79-667-4643,1943 Main St,Busan,South Korea
+3,Kitchen Plus Ltd,Contact_3,contact3@kitchenplusltd.com,+61-189-6243,9215 Main St,Tokyo,Japan
+4,SportsPro International,Contact_4,contact4@sportsprointernational.com,+62-188-4452,5484 Business St,Daegu,South Korea
+5,FurniWorld,Contact_5,contact5@furniworld.com,+43-355-6089,2174 Main St,London,UK
+6,AudioMax Systems,Contact_6,contact6@audiomaxsystems.com,+82-150-4266,2557 Business St,Paris,France
+7,Gaming Central,Contact_7,contact7@gamingcentral.com,+17-541-2247,7704 Commerce St,Toronto,Canada
+8,Outdoor Adventures Co,Contact_8,contact8@outdooradventuresco.com,+22-990-4743,9345 Business St,Incheon,South Korea
+9,Fashion Forward,Contact_9,contact9@fashionforward.com,+57-132-5842,6285 Business St,Daegu,South Korea
+10,Book Distributors Inc,Contact_10,contact10@bookdistributorsinc.com,+40-468-7653,620 Industrial St,Beijing,China
+11,Electronics Wholesale,Contact_11,contact11@electronicswholesale.com,+37-448-4368,2409 Commerce St,Berlin,Germany
+12,Fitness Gear Pro,Contact_12,contact12@fitnessgearpro.com,+31-938-3639,259 Business St,Kyoto,Japan
+13,Home Essentials,Contact_13,contact13@homeessentials.com,+70-683-4889,2163 Commerce St,Birmingham,UK
+14,Digital Devices Ltd,Contact_14,contact14@digitaldevicesltd.com,+21-606-8668,5856 Commerce St,Berlin,Germany
+15,Quality Furniture Co,Contact_15,contact15@qualityfurnitureco.com,+38-624-9278,5971 Commerce St,Incheon,South Korea
+16,Sports Equipment Plus,Contact_16,contact16@sportsequipmentplus.com,+72-454-5743,4591 Commerce St,Munich,Germany
+17,Tech Innovations,Contact_17,contact17@techinnovations.com,+37-104-4034,4484 Business St,Nagoya,Japan
+18,Lifestyle Products,Contact_18,contact18@lifestyleproducts.com,+17-784-6044,6063 Main St,Beijing,China
+19,Premium Electronics,Contact_19,contact19@premiumelectronics.com,+60-157-9033,9695 Business St,London,UK
+20,Global Suppliers Inc,Contact_20,contact20@globalsuppliersinc.com,+70-210-6557,547 Main St,Daegu,South Korea

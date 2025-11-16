@@ -1,0 +1,5 @@
+user_id,username,email,password_hash,role,created_date,last_login,is_active
+1,admin,admin@company.com,$2b$12$IBXdymUcYqdk9KK.ZBPA2.Td9QYX0qN8CZfHAcDm.FKII2z1Wpc9K,admin,2025-11-04,2025-11-04 01:37:05,1
+2,analyst,analyst@company.com,$2b$12$4s0LTtOL1qneN.ihnh.k1.sDovk7eVSaJ7HLR2hH7SUhm/X8YEL2a,analyst,2025-11-04,2025-11-04 00:11:05,1
+3,sales,sales@company.com,$2b$12$2N49.VtJPsQhJufEPXtdkur2JbHqoH8QH4IyDmwvbaCoW0X.8k4N.,sales,2025-11-04,2025-11-04 00:28:43,1
+4,guest,guest@company.com,$2b$12$o6XQWZlg3Qs3Xc6o85k3beBV5TwCCds9gTO31EBhL.HJkFT1LMOqy,guest,2025-11-04,2025-11-04 00:07:49,1

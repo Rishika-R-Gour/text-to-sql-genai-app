@@ -1,0 +1,151 @@
+product_id,product_name,category,price,stock_quantity,supplier_id
+1,Plus Running Shoes,Sports,221.99,470,1
+2,Max Phone Case,Mobile,625.23,339,19
+3,Plus Desk,Furniture,308,200,5
+4,Modern Jeans,Fashion,167.09,27,15
+5,Pro All-in-One,Computers,314.98,446,1
+6,Advanced Microphone,Audio,342.03,26,8
+7,Advanced Coffee Maker,Appliances,509.21,177,18
+8,Wireless Air Fryer,Appliances,145.44,464,7
+9,Ultra Yoga Mat,Sports,275.47,200,17
+10,Deluxe Gaming Chair,Gaming,349.63,432,1
+11,Pro Speakers,Audio,322.89,500,4
+12,Supreme VR Headset,Gaming,648.47,315,15
+13,Supreme Toaster,Appliances,400.94,36,8
+14,Premium Air Fryer,Appliances,611.49,203,13
+15,Advanced Gaming Laptop,Computers,2513.21,206,1
+16,Wireless Sneakers,Fashion,113.01,33,12
+17,Elite Phone Case,Mobile,953.94,16,16
+18,Professional Jeans,Fashion,82.28,279,11
+19,Max Gaming Chair,Gaming,538.66,451,19
+20,Elite Jacket,Fashion,57,188,11
+21,Max Bed Frame,Furniture,109.81,133,1
+22,Advanced Desk,Furniture,482.48,352,16
+23,Professional Water Bottle,Outdoor,283.81,165,5
+24,Pro Table,Furniture,1089.79,145,9
+25,Supreme Keyboard,Electronics,1716.98,428,7
+26,Elite Treadmill,Fitness,1981.51,41,11
+27,Smart Air Fryer,Appliances,523.87,288,20
+28,Ultra Charger,Mobile,1020.76,133,18
+29,Max Backpack,Outdoor,504.47,46,7
+30,Smart Biography,Books,41.54,180,16
+31,Plus Headphones,Audio,214.14,336,17
+32,Smart Bed Frame,Furniture,756.8,480,20
+33,Supreme T-Shirt,Fashion,68.06,481,12
+34,Supreme Laptop,Electronics,1285.24,221,11
+35,Pro Office Chair,Furniture,1344.74,235,10
+36,Modern Webcam,Electronics,134.17,263,6
+37,Max Bookshelf,Furniture,1449.41,378,1
+38,Pro Tennis Racket,Sports,257.93,388,20
+39,Max Watch,Fashion,81.69,35,13
+40,Max Webcam,Electronics,645.97,282,11
+41,Premium Backpack,Outdoor,96.6,363,18
+42,Modern Toaster,Appliances,484,165,17
+43,Smart Speakers,Audio,320.48,216,5
+44,Pro Screen Protector,Mobile,641.75,253,10
+45,Max T-Shirt,Fashion,120.67,355,15
+46,Classic Dumbbells,Fitness,778.61,110,3
+47,Wireless Running Shoes,Sports,216.38,426,2
+48,Smart Gaming Mouse,Gaming,315.29,139,17
+49,Essential Sunglasses,Fashion,199.67,480,9
+50,Wireless Microphone,Audio,436.31,419,10
+51,Plus Watch,Fashion,153.64,225,12
+52,Professional Running Shoes,Sports,41.87,11,20
+53,Essential Novel,Books,16.92,449,18
+54,Premium Self-Help Book,Books,12.02,258,13
+55,Ultra Workstation,Computers,859.99,498,1
+56,Wireless Hiking Boots,Outdoor,168.05,334,6
+57,Ultra Monitor,Electronics,1235.82,490,17
+58,Wireless Soccer Ball,Sports,106.81,335,11
+59,Ultra Office Chair,Furniture,676.7,450,8
+60,Advanced Jacket,Fashion,10.11,498,8
+61,Elite Self-Help Book,Books,28.3,333,18
+62,Professional Phone Case,Mobile,679.46,77,13
+63,Professional Gaming Keyboard,Gaming,242.74,239,10
+64,Supreme Webcam,Electronics,1347.23,450,11
+65,Supreme Soundbar,Audio,233.74,345,19
+66,Deluxe Speakers,Audio,261.75,285,15
+67,Wireless Desk,Furniture,511.49,241,20
+68,Pro Mouse,Electronics,662.03,9,2
+69,Elite Dumbbells,Fitness,1721.54,310,1
+70,Max Gaming Mouse,Gaming,508.16,389,2
+71,Max Phone Case,Mobile,958.54,463,19
+72,Pro Running Shoes,Sports,80.96,101,10
+73,Max Office Chair,Furniture,774.57,52,4
+74,Pro Controller,Gaming,364.11,219,5
+75,Premium Sleeping Bag,Outdoor,86.16,123,13
+76,Premium Water Bottle,Outdoor,39,144,5
+77,Deluxe Headphones,Audio,331.54,323,4
+78,Modern Jacket,Fashion,165.4,133,8
+79,Wireless Watch,Fashion,17.58,174,10
+80,Ultra Sleeping Bag,Outdoor,110.81,404,18
+81,Classic Coffee Maker,Appliances,305.48,488,4
+82,Advanced Air Fryer,Appliances,314.79,171,5
+83,Professional Dumbbells,Fitness,640.34,320,8
+84,Ultra Kettlebell,Fitness,204.97,196,17
+85,Plus Sleeping Bag,Outdoor,38.33,330,19
+86,Wireless Kettlebell,Fitness,1377.39,48,4
+87,Elite All-in-One,Computers,2114.92,428,10
+88,Classic Hiking Boots,Outdoor,403.15,193,3
+89,Supreme Cookbook,Books,31.97,181,16
+90,Advanced Running Shoes,Sports,260.31,158,4
+91,Supreme Exercise Bike,Fitness,1184.71,23,5
+92,Smart VR Headset,Gaming,526.21,209,9
+93,Max Charger,Mobile,1178.27,333,11
+94,Advanced Biography,Books,43.99,347,8
+95,Supreme Sofa,Furniture,610.59,225,13
+96,Supreme All-in-One,Computers,1983.73,243,6
+97,Premium Gaming Chair,Gaming,697.99,341,5
+98,Ultra Gaming Keyboard,Gaming,616.69,218,11
+99,Deluxe Textbook,Books,34.47,147,7
+100,Premium Mouse,Electronics,1403.1,61,15
+101,Max Smartphone,Mobile,174.78,127,18
+102,Max Table,Furniture,1152.2,19,16
+103,Pro Desktop,Electronics,642.75,412,1
+104,Max VR Headset,Gaming,40.48,337,14
+105,Plus Jeans,Fashion,60.42,152,2
+106,Ultra Smartphone,Mobile,360.26,433,20
+107,Supreme Gaming Keyboard,Gaming,627.5,474,14
+108,Wireless Screen Protector,Mobile,229.24,202,3
+109,Professional Biography,Books,42.43,194,16
+110,Professional Sunglasses,Fashion,45.57,433,20
+111,Deluxe Sneakers,Fashion,138.7,247,14
+112,Ultra Soundbar,Audio,305.86,82,13
+113,Essential Mouse,Electronics,849.82,443,19
+114,Essential Business Laptop,Computers,699.39,310,14
+115,Pro Soundbar,Audio,122.1,411,19
+116,Classic Tennis Racket,Sports,71.8,475,13
+117,Pro Kettlebell,Fitness,818.38,327,1
+118,Classic VR Headset,Gaming,493.78,320,16
+119,Essential Exercise Bike,Fitness,932.45,396,18
+120,Premium Watch,Fashion,198.2,338,8
+121,Classic Yoga Mat,Sports,252.9,113,20
+122,Classic Phone Case,Mobile,1155.23,359,20
+123,Wireless Gaming Laptop,Computers,2110.49,482,16
+124,Deluxe Gaming Mouse,Gaming,389.98,100,18
+125,Pro Screen Protector,Mobile,667.98,330,8
+126,Classic Basketball,Sports,194.96,224,1
+127,Smart Air Fryer,Appliances,356.77,9,9
+128,Max Dumbbells,Fitness,491.85,314,3
+129,Classic Microphone,Audio,478.38,453,8
+130,Advanced Speakers,Audio,373.5,466,3
+131,Plus Microphone,Audio,491.27,445,19
+132,Wireless Air Fryer,Appliances,719.66,129,9
+133,Ultra Sunglasses,Fashion,82.37,405,5
+134,Max Smartphone,Mobile,707.51,102,17
+135,Premium Watch,Fashion,34.98,406,7
+136,Supreme All-in-One,Computers,2162.85,459,3
+137,Elite Charger,Mobile,484.5,193,7
+138,Classic Basketball,Sports,131.5,115,15
+139,Premium Water Bottle,Outdoor,54.42,430,3
+140,Deluxe Controller,Gaming,727.42,267,20
+141,Professional Yoga Mat,Sports,83.53,132,19
+142,Ultra Backpack,Outdoor,385.58,158,13
+143,Advanced Table,Furniture,1029.66,23,9
+144,Max Gaming Chair,Gaming,397.45,285,6
+145,Premium VR Headset,Gaming,108.35,159,8
+146,Ultra Mini PC,Computers,2579.88,245,14
+147,Classic Treadmill,Fitness,1738.74,185,1
+148,Smart Sofa,Furniture,1485.54,44,17
+149,Max Watch,Fashion,79.05,407,1
+150,Pro Novel,Books,29.99,292,18

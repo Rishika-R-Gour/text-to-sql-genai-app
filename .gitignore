@@ -1,0 +1,34 @@
+# Environment variables with real credentials
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Database files (optional - comment out if you want to include sample data)
+# *.db
+
+# Temporary files
+*.tmp
+*.temp

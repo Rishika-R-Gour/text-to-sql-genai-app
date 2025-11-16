@@ -1,0 +1,135 @@
+log_id,user_id,username,query_text,sql_generated,execution_time,success,error_message
+1,4,guest,Show me all orders,SELECT * FROM orders,2025-11-04 00:08:11,0,Access to table 'orders' is not allowed for role 'guest'
+2,4,guest,Show me all products in Gaming category,SELECT * FROM products WHERE category = 'Gaming' LIMIT 100,2025-11-04 00:08:19,1,
+3,1,admin,Which customers have placed more than 3 orders?,"SELECT
+  c.customer_id,
+  c.first_name,
+  c.last_name
+FROM customers AS c
+JOIN orders AS o
+  ON c.customer_id = o.customer_id
+GROUP BY
+  c.customer_id,
+  c.first_name,
+  c.last_name
+HAVING
+  COUNT(o.order_id) > 3
+LIMIT 100;
+",2025-11-04 00:09:29,1,
+4,2,analyst,Find customers who only buy from specific categories,"SELECT
+  c.customer_id,
+  c.first_name,
+  c.last_name
+FROM customers AS c
+JOIN orders AS o
+  ON c.customer_id = o.customer_id
+JOIN order_items AS oi
+  ON o.order_id = oi.order_id
+JOIN products AS p
+  ON oi.product_id = p.product_id
+JOIN categories AS cat
+  ON p.category = cat.category_name
+GROUP BY
+  c.customer_id,
+  c.first_name,
+  c.last_name
+HAVING
+  COUNT(DISTINCT cat.category_name) = 1
+LIMIT 100;
+",2025-11-04 00:10:38,1,
+5,2,analyst,Find customers who only buy from specific categories,"SELECT
+  c.customer_id,
+  c.first_name,
+  c.last_name
+FROM customers AS c
+JOIN orders AS o
+  ON c.customer_id = o.customer_id
+JOIN order_items AS oi
+  ON o.order_id = oi.order_id
+JOIN products AS p
+  ON oi.product_id = p.product_id
+JOIN categories AS cat
+  ON p.category = cat.category_name
+GROUP BY
+  c.customer_id,
+  c.first_name,
+  c.last_name
+HAVING
+  COUNT(DISTINCT cat.category_name) = 1
+LIMIT 100;
+",2025-11-04 00:10:41,1,
+6,2,analyst,Show me the top 5 best-selling products,"SELECT
+  p.product_name,
+  SUM(oi.quantity) AS total_quantity_sold
+FROM products AS p
+JOIN order_items AS oi
+  ON p.product_id = oi.product_id
+GROUP BY
+  p.product_name
+ORDER BY
+  total_quantity_sold DESC
+LIMIT 5;",2025-11-04 00:11:26,1,
+7,1,admin,Show me supplier performance by country,"SELECT
+  s.country,
+  s.supplier_name,
+  SUM(oi.quantity * oi.unit_price) AS total_sales
+FROM suppliers AS s
+JOIN products AS p
+  ON s.supplier_id = p.supplier_id
+JOIN order_items AS oi
+  ON p.product_id = oi.product_id
+GROUP BY
+  s.country,
+  s.supplier_name
+ORDER BY
+  s.country,
+  total_sales DESC
+LIMIT 100",2025-11-04 00:22:10,1,
+8,1,admin,Show me supplier performance by country,"SELECT
+  s.country,
+  SUM(oi.quantity * oi.unit_price) AS total_sales_generated
+FROM suppliers AS s
+JOIN products AS p
+  ON s.supplier_id = p.supplier_id
+JOIN order_items AS oi
+  ON p.product_id = oi.product_id
+GROUP BY
+  s.country
+ORDER BY
+  s.country;",2025-11-04 00:22:14,1,
+9,1,admin,Show me supplier performance by country,"SELECT
+  s.country,
+  SUM(oi.quantity * oi.unit_price) AS total_revenue_from_products
+FROM suppliers AS s
+JOIN products AS p
+  ON s.supplier_id = p.supplier_id
+JOIN order_items AS oi
+  ON p.product_id = oi.product_id
+GROUP BY
+  s.country
+ORDER BY
+  total_revenue_from_products DESC
+LIMIT 100",2025-11-04 00:22:19,1,
+10,1,admin,show me total numbers or order placed in last month of 2023,"SELECT COUNT(order_id)
+FROM orders
+WHERE order_date >= '2023-12-01' AND order_date <= '2023-12-31'",2025-11-04 00:34:04,1,
+11,1,admin,show me total numbers or order placed in 2023,"SELECT COUNT(order_id) FROM orders WHERE STRFTIME('%Y', order_date) = '2023'",2025-11-04 00:34:20,1,
+12,1,admin,how many total reviews are there?,SELECT COUNT(review_id) FROM reviews,2025-11-04 00:35:16,1,
+13,1,admin,Which payment method is most popular?,"SELECT payment_method
+FROM payments
+GROUP BY payment_method
+ORDER BY COUNT(*) DESC
+LIMIT 1;
+",2025-11-04 01:38:28,1,
+14,1,admin,Show me supplier performance by country,"SELECT
+  s.country,
+  SUM(oi.quantity * oi.unit_price) AS total_sales_amount
+FROM suppliers AS s
+JOIN products AS p
+  ON s.supplier_id = p.supplier_id
+JOIN order_items AS oi
+  ON p.product_id = oi.product_id
+GROUP BY
+  s.country
+ORDER BY
+  total_sales_amount DESC;",2025-11-04 01:39:03,1,

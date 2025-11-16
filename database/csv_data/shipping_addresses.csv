@@ -1,0 +1,121 @@
+address_id,customer_id,address_line1,address_line2,city,state,postal_code,country,is_default
+1,78,9049 Lincoln Ave,,Chicago,NY,74178,USA,1
+2,16,3221 Pine Rd,Suite 961,Munich,,47311,Germany,1
+3,95,5909 Maple Dr,Apt 26,Brisbane,QLD,96756,Australia,0
+4,27,6169 Cedar Ln,Suite 857,Hamburg,,38994,Germany,0
+5,69,6103 Washington St,,Sydney,WA,89073,Australia,0
+6,70,3793 Oak Ave,Apt 43,Hamburg,,74921,Germany,0
+7,27,9955 Oak Ave,Apt 38,Marseille,,43167,France,0
+8,92,1808 Oak Ave,,Manchester,,12710,UK,1
+9,96,5714 Oak Ave,Apt 39,Houston,FL,35330,USA,0
+10,20,9751 Second St,,Montreal,AB,84841,Canada,1
+11,97,6278 Lincoln Ave,Suite 336,Marseille,,78054,France,0
+12,89,3837 Park Ave,Suite 210,London,,56230,UK,0
+13,50,4726 Lincoln Ave,,Brisbane,WA,12032,Australia,0
+14,13,6582 First St,Suite 847,Vancouver,BC,14499,Canada,1
+15,18,2936 Oak Ave,Suite 276,Lyon,,22159,France,0
+16,38,9799 Oak Ave,Suite 359,New York,PA,64612,USA,0
+17,10,1000 Oak Ave,Suite 545,Manchester,,44439,UK,0
+18,68,604 Park Ave,Suite 161,Sydney,NSW,50748,Australia,0
+19,88,134 Broadway,Apt 23,Paris,,84082,France,0
+20,34,8947 Pine Rd,Apt 4,London,,53995,UK,1
+21,78,2127 Cedar Ln,Apt 45,Houston,IL,60376,USA,1
+22,85,3047 Broadway,,New York,TX,74174,USA,0
+23,25,7111 Pine Rd,,Melbourne,NSW,15556,Australia,0
+24,78,9468 Pine Rd,Apt 6,Los Angeles,TX,89397,USA,1
+25,36,8419 Broadway,Apt 41,Chicago,IL,59068,USA,1
+26,72,6275 Oak Ave,Apt 7,Marseille,,97597,France,1
+27,30,3400 Oak Ave,,Munich,,51409,Germany,0
+28,59,9112 Park Ave,Apt 19,Sydney,VIC,73913,Australia,0
+29,71,1741 Pine Rd,Suite 823,Manchester,,25516,UK,0
+30,86,7835 Pine Rd,,New York,TX,43231,USA,0
+31,55,7351 Lincoln Ave,Suite 660,Los Angeles,NY,98394,USA,0
+32,46,3177 Main St,Suite 240,Lyon,,35171,France,1
+33,32,3350 Maple Dr,Apt 44,Sydney,QLD,34765,Australia,1
+34,13,9045 Pine Rd,,Lyon,,43340,France,0
+35,51,9475 Elm St,Suite 735,Toronto,ON,71500,Canada,0
+36,64,6969 Elm St,,Lyon,,50827,France,0
+37,35,7395 Main St,,Toronto,BC,64050,Canada,1
+38,70,9450 Elm St,Apt 36,Paris,,27140,France,1
+39,55,8313 Washington St,Suite 831,Paris,,98735,France,1
+40,49,1134 Park Ave,Apt 39,Sydney,QLD,51393,Australia,0
+41,31,6050 First St,Apt 41,Brisbane,QLD,37775,Australia,1
+42,6,4821 Washington St,,Marseille,,29188,France,0
+43,6,6995 First St,,Lyon,,78616,France,0
+44,41,5584 Park Ave,Apt 37,Sydney,QLD,90158,Australia,0
+45,4,8297 Broadway,,Los Angeles,IL,85517,USA,0
+46,25,4903 Main St,Apt 8,Chicago,PA,63256,USA,1
+47,26,2390 Lincoln Ave,Suite 288,Montreal,ON,73290,Canada,0
+48,33,5853 Broadway,Apt 48,New York,TX,45140,USA,0
+49,35,2245 Broadway,,Berlin,,24896,Germany,0
+50,39,6143 Broadway,Suite 767,New York,PA,74020,USA,0
+51,49,8499 Park Ave,Suite 612,London,,86436,UK,0
+52,54,4713 Pine Rd,,Chicago,NY,91063,USA,0
+53,19,9892 Cedar Ln,,Toronto,ON,94138,Canada,0
+54,12,4155 Pine Rd,Suite 234,Munich,,58304,Germany,0
+55,54,7834 Park Ave,,Marseille,,32933,France,0
+56,54,7962 Park Ave,,Brisbane,NSW,15378,Australia,1
+57,88,4205 Lincoln Ave,Apt 38,Melbourne,QLD,43296,Australia,0
+58,54,730 Park Ave,,Montreal,BC,80404,Canada,0
+59,85,8146 Park Ave,Suite 802,Vancouver,QC,28199,Canada,1
+60,50,6123 Oak Ave,Suite 185,Birmingham,,97333,UK,1
+61,69,1880 Lincoln Ave,Apt 50,Lyon,,59630,France,0
+62,80,6520 Park Ave,Suite 585,Vancouver,AB,76895,Canada,0
+63,82,4341 Oak Ave,Suite 118,Lyon,,78120,France,0
+64,98,7098 Washington St,Apt 27,Hamburg,,80435,Germany,0
+65,2,1960 Washington St,Apt 49,Montreal,ON,39923,Canada,0
+66,91,6336 Elm St,Apt 7,Vancouver,QC,79055,Canada,0
+67,27,1659 Lincoln Ave,Apt 39,Marseille,,64134,France,0
+68,56,2782 Lincoln Ave,Apt 9,London,,69051,UK,0
+69,81,8070 Lincoln Ave,,Manchester,,47784,UK,0
+70,46,3019 First St,,Paris,,90855,France,0
+71,20,8836 Maple Dr,Suite 961,Paris,,93552,France,1
+72,48,6304 Second St,Suite 266,Vancouver,QC,26302,Canada,0
+73,56,9548 Lincoln Ave,Apt 16,Marseille,,28390,France,0
+74,41,373 Washington St,Apt 23,Lyon,,94944,France,1
+75,14,9868 Broadway,,Los Angeles,FL,40822,USA,0
+76,83,3966 Broadway,Apt 11,Hamburg,,52704,Germany,1
+77,84,3723 Second St,Suite 429,Los Angeles,TX,50987,USA,1
+78,49,3851 Lincoln Ave,,Sydney,NSW,51796,Australia,0
+79,22,2056 Pine Rd,Suite 847,Montreal,BC,55342,Canada,0
+80,58,7468 Main St,Apt 8,Montreal,ON,30386,Canada,0
+81,69,7954 First St,,Birmingham,,27497,UK,0
+82,98,8511 Pine Rd,Suite 936,Montreal,BC,80848,Canada,0
+83,86,5076 Broadway,Suite 849,Montreal,BC,82259,Canada,1
+84,52,9107 Broadway,,Birmingham,,10328,UK,0
+85,59,3455 Oak Ave,Suite 335,Munich,,38031,Germany,0
+86,29,9394 Lincoln Ave,,Manchester,,40728,UK,1
+87,95,2838 Park Ave,,Vancouver,ON,66586,Canada,0
+88,57,9826 Maple Dr,Suite 618,Manchester,,17046,UK,1
+89,24,5831 Park Ave,Apt 32,Birmingham,,90521,UK,0
+90,30,4223 Park Ave,Suite 873,Lyon,,87693,France,0
+91,38,1342 Main St,Suite 959,Chicago,CA,78116,USA,1
+92,13,6340 Pine Rd,Apt 41,Montreal,AB,86838,Canada,0
+93,3,7906 Broadway,Suite 895,Chicago,IL,24960,USA,0
+94,2,8002 Pine Rd,,London,,25688,UK,0
+95,47,7409 Second St,Apt 47,Munich,,56105,Germany,1
+96,45,6045 Pine Rd,,Chicago,PA,36149,USA,1
+97,71,9471 Elm St,Apt 38,Marseille,,43331,France,0
+98,68,6665 Cedar Ln,,Marseille,,10381,France,0
+99,99,8290 Broadway,,New York,PA,72801,USA,0
+100,16,9707 Lincoln Ave,,Houston,FL,43122,USA,0
+101,70,6331 Park Ave,Suite 914,Hamburg,,77937,Germany,0
+102,38,4562 Second St,,New York,CA,99396,USA,1
+103,48,134 First St,,London,,67820,UK,1
+104,83,4115 Pine Rd,Apt 24,Sydney,NSW,38312,Australia,0
+105,49,6598 Washington St,Apt 34,Munich,,29765,Germany,0
+106,33,5572 Washington St,Apt 29,Lyon,,33952,France,0
+107,45,8122 Second St,Apt 38,Houston,IL,91632,USA,1
+108,66,3929 Washington St,Apt 22,Hamburg,,59976,Germany,0
+109,46,7818 Lincoln Ave,Suite 795,Munich,,59852,Germany,1
+110,27,9815 Oak Ave,Suite 462,Melbourne,NSW,35243,Australia,0
+111,52,862 Lincoln Ave,Apt 3,New York,CA,79391,USA,0
+112,10,581 Maple Dr,Suite 396,Berlin,,54008,Germany,0
+113,80,1480 Second St,Apt 23,Vancouver,QC,58184,Canada,1
+114,93,5707 Broadway,Apt 16,Paris,,53797,France,1
+115,68,3845 First St,Apt 21,Brisbane,NSW,84042,Australia,0
+116,28,9683 Broadway,Suite 318,Houston,CA,18482,USA,0
+117,50,183 Washington St,Apt 24,Lyon,,28622,France,0
+118,33,9079 Pine Rd,,Houston,CA,26239,USA,1
+119,17,5537 First St,,Lyon,,95465,France,0
+120,59,8348 Pine Rd,Apt 19,Hamburg,,45191,Germany,0

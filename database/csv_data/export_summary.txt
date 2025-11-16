@@ -1,0 +1,29 @@
+Text-to-SQL Database Export Summary
+========================================
+
+Export Date: 2025-11-03 20:40:46
+Total Records: 1693
+Total Tables: 13
+
+Files Created:
+--------------------
+• categories.csv
+• suppliers.csv
+• customers.csv
+• products.csv
+• orders.csv
+• order_items.csv
+• reviews.csv
+• shipping_addresses.csv
+• payments.csv
+• inventory.csv
+• discounts.csv
+• users.csv
+• query_logs.csv
+
+Usage Instructions:
+--------------------
+1. Import these CSV files into any database system
+2. Use the database_schema.sql file to create the table structure
+3. Load the CSV data into the corresponding tables
+4. The data is ready for text-to-SQL queries!

@@ -1,0 +1,101 @@
+customer_id,first_name,last_name,email,city,country,created_date
+1,Andrew,Wilson,andrew.wilson1@email.com,Naples,Italy,2022-02-22
+2,Mark,King,mark.king2@email.com,Sydney,Australia,2022-06-10
+3,Edward,White,edward.white3@email.com,Amsterdam,Netherlands,2022-12-19
+4,Matthew,Thompson,matthew.thompson4@email.com,London,UK,2023-08-25
+5,Ruth,Flores,ruth.flores5@email.com,Birmingham,UK,2022-02-21
+6,Deborah,Rodriguez,deborah.rodriguez6@email.com,Bilbao,Spain,2022-07-06
+7,Linda,Young,linda.young7@email.com,Madrid,Spain,2023-10-25
+8,Chris,Wright,chris.wright8@email.com,San Antonio,USA,2023-08-16
+9,Michelle,Smith,michelle.smith9@email.com,Sapporo,Japan,2022-12-04
+10,George,Williams,george.williams10@email.com,Nagoya,Japan,2022-02-08
+11,Daniel,Flores,daniel.flores11@email.com,Montreal,Canada,2022-12-30
+12,Maria,Jones,maria.jones12@email.com,Berlin,Germany,2023-04-27
+13,Sharon,Williams,sharon.williams13@email.com,Bilbao,Spain,2023-01-10
+14,Deborah,Lewis,deborah.lewis14@email.com,Kyoto,Japan,2022-09-24
+15,Mark,Harris,mark.harris15@email.com,Paris,France,2022-04-03
+16,Carol,Robinson,carol.robinson16@email.com,Nagoya,Japan,2022-08-31
+17,Richard,Sanchez,richard.sanchez17@email.com,Sydney,Australia,2023-10-01
+18,Chris,Hernandez,chris.hernandez18@email.com,Kyoto,Japan,2022-08-31
+19,Patricia,White,patricia.white19@email.com,Tokyo,Japan,2022-01-05
+20,Joseph,Martin,joseph.martin20@email.com,Sapporo,Japan,2022-03-26
+21,Carol,Lewis,carol.lewis21@email.com,New York,USA,2023-02-19
+22,Joshua,Hernandez,joshua.hernandez22@email.com,Lyon,France,2023-06-20
+23,Daniel,Thompson,daniel.thompson23@email.com,Naples,Italy,2023-01-27
+24,Edward,Williams,edward.williams24@email.com,Bilbao,Spain,2022-07-26
+25,Nancy,Taylor,nancy.taylor25@email.com,Houston,USA,2022-11-16
+26,Sharon,Williams,sharon.williams26@email.com,Nagoya,Japan,2023-01-15
+27,Deborah,Walker,deborah.walker27@email.com,Nantes,France,2023-02-03
+28,Steven,Brown,steven.brown28@email.com,Berlin,Germany,2023-07-10
+29,Robert,Lee,robert.lee29@email.com,The Hague,Netherlands,2022-08-27
+30,Matthew,Jones,matthew.jones30@email.com,Hamburg,Germany,2022-01-26
+31,David,Garcia,david.garcia31@email.com,Valencia,Spain,2023-10-08
+32,George,Johnson,george.johnson32@email.com,The Hague,Netherlands,2022-09-29
+33,Paul,Flores,paul.flores33@email.com,Chicago,USA,2023-05-22
+34,Susan,Smith,susan.smith34@email.com,Adelaide,Australia,2022-05-12
+35,Joseph,Nguyen,joseph.nguyen35@email.com,Perth,Australia,2023-05-30
+36,Sharon,Young,sharon.young36@email.com,Stuttgart,Germany,2023-08-26
+37,Jessica,Wright,jessica.wright37@email.com,Phoenix,USA,2022-04-07
+38,Sandra,Flores,sandra.flores38@email.com,Marseille,France,2022-04-28
+39,Nancy,Jones,nancy.jones39@email.com,Los Angeles,USA,2022-06-03
+40,Laura,Hernandez,laura.hernandez40@email.com,Montreal,Canada,2023-07-14
+41,Jane,King,jane.king41@email.com,Ottawa,Canada,2023-10-09
+42,Sharon,Hernandez,sharon.hernandez42@email.com,Liverpool,UK,2022-09-01
+43,Steven,Perez,steven.perez43@email.com,Florence,Italy,2023-02-20
+44,Kimberly,Walker,kimberly.walker44@email.com,Cologne,Germany,2022-08-30
+45,James,Martinez,james.martinez45@email.com,Amsterdam,Netherlands,2023-10-14
+46,Laura,Hernandez,laura.hernandez46@email.com,Milan,Italy,2023-06-29
+47,Edward,Jackson,edward.jackson47@email.com,Philadelphia,USA,2022-10-12
+48,Michael,Hill,michael.hill48@email.com,Munich,Germany,2022-04-11
+49,Andrew,White,andrew.white49@email.com,Montreal,Canada,2022-01-01
+50,Mark,Johnson,mark.johnson50@email.com,Edinburgh,UK,2022-08-20
+51,Jennifer,Martin,jennifer.martin51@email.com,London,UK,2023-04-24
+52,William,Thomas,william.thomas52@email.com,Brisbane,Australia,2023-02-09
+53,James,Perez,james.perez53@email.com,San Antonio,USA,2022-04-05
+54,Jennifer,Lewis,jennifer.lewis54@email.com,Philadelphia,USA,2023-07-23
+55,Karen,Flores,karen.flores55@email.com,Adelaide,Australia,2022-03-14
+56,Donald,Torres,donald.torres56@email.com,Los Angeles,USA,2023-09-23
+57,Ruth,Wilson,ruth.wilson57@email.com,Milan,Italy,2022-07-25
+58,Andrew,Thompson,andrew.thompson58@email.com,Turin,Italy,2022-06-03
+59,William,Sanchez,william.sanchez59@email.com,Paris,France,2022-03-25
+60,John,Gonzalez,john.gonzalez60@email.com,Milan,Italy,2023-02-13
+61,Linda,Thompson,linda.thompson61@email.com,Edinburgh,UK,2023-07-14
+62,Laura,Brown,laura.brown62@email.com,Florence,Italy,2022-03-19
+63,Michelle,Torres,michelle.torres63@email.com,London,UK,2022-04-18
+64,Sarah,Taylor,sarah.taylor64@email.com,Rotterdam,Netherlands,2022-11-24
+65,George,Lopez,george.lopez65@email.com,Valencia,Spain,2023-08-17
+66,Steven,Harris,steven.harris66@email.com,Toronto,Canada,2023-10-14
+67,Daniel,Brown,daniel.brown67@email.com,Tokyo,Japan,2023-01-20
+68,Edward,Rodriguez,edward.rodriguez68@email.com,Milan,Italy,2023-03-07
+69,George,Garcia,george.garcia69@email.com,Paris,France,2022-07-06
+70,Joseph,Young,joseph.young70@email.com,Bilbao,Spain,2023-05-13
+71,Daniel,Torres,daniel.torres71@email.com,Liverpool,UK,2022-05-19
+72,Sharon,Garcia,sharon.garcia72@email.com,Marseille,France,2022-03-28
+73,Lisa,Robinson,lisa.robinson73@email.com,Los Angeles,USA,2023-03-06
+74,Kimberly,Torres,kimberly.torres74@email.com,Rome,Italy,2022-02-10
+75,Laura,Flores,laura.flores75@email.com,Tokyo,Japan,2023-01-18
+76,Emily,Martin,emily.martin76@email.com,Brisbane,Australia,2022-11-05
+77,Barbara,Lopez,barbara.lopez77@email.com,Seville,Spain,2023-01-26
+78,Karen,Jones,karen.jones78@email.com,Nantes,France,2023-03-01
+79,Linda,Walker,linda.walker79@email.com,Cologne,Germany,2023-04-14
+80,Maria,Robinson,maria.robinson80@email.com,Kyoto,Japan,2022-05-09
+81,Michelle,Smith,michelle.smith81@email.com,Adelaide,Australia,2023-01-10
+82,George,Taylor,george.taylor82@email.com,Perth,Australia,2022-07-01
+83,Jennifer,Rodriguez,jennifer.rodriguez83@email.com,Cologne,Germany,2023-10-12
+84,Joseph,Sanchez,joseph.sanchez84@email.com,Manchester,UK,2023-07-08
+85,Michael,Brown,michael.brown85@email.com,Kyoto,Japan,2023-09-01
+86,Charles,Young,charles.young86@email.com,Brisbane,Australia,2022-03-14
+87,Michael,Lopez,michael.lopez87@email.com,Toronto,Canada,2023-08-09
+88,Robert,Sanchez,robert.sanchez88@email.com,Stuttgart,Germany,2023-09-23
+89,David,Johnson,david.johnson89@email.com,Naples,Italy,2023-07-04
+90,Betty,Martinez,betty.martinez90@email.com,Tokyo,Japan,2023-02-03
+91,Emily,Miller,emily.miller91@email.com,Valencia,Spain,2023-04-14
+92,Jessica,Miller,jessica.miller92@email.com,Edmonton,Canada,2022-08-15
+93,Kimberly,Williams,kimberly.williams93@email.com,Rotterdam,Netherlands,2023-03-03
+94,Michael,Brown,michael.brown94@email.com,New York,USA,2022-07-10
+95,Deborah,Robinson,deborah.robinson95@email.com,The Hague,Netherlands,2023-09-07
+96,David,Moore,david.moore96@email.com,Hamburg,Germany,2023-04-05
+97,Maria,White,maria.white97@email.com,Manchester,UK,2022-12-30
+98,Donna,Taylor,donna.taylor98@email.com,Liverpool,UK,2022-08-11
+99,Helen,Hill,helen.hill99@email.com,Cologne,Germany,2023-03-20
+100,William,Torres,william.torres100@email.com,Perth,Australia,2023-01-29
