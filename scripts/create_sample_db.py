@@ -4,8 +4,11 @@ import os
 def create_sample_database():
     """Create a sample database with some tables and data"""
     
+    # Create database directory if it doesn't exist
+    os.makedirs('../database', exist_ok=True)
+    
     # Create database connection
-    conn = sqlite3.connect('sample.db')
+    conn = sqlite3.connect('../database/sample.db')
     cursor = conn.cursor()
     
     # Create customers table
@@ -28,6 +31,7 @@ def create_sample_database():
         product_name TEXT NOT NULL,
         category TEXT,
         price DECIMAL(10,2),
+        cost DECIMAL(10,2),
         stock_quantity INTEGER,
         supplier_id INTEGER
     )
@@ -167,13 +171,13 @@ def create_sample_database():
     ]
     
     products_data = [
-        (1, 'Laptop Pro', 'Electronics', 1299.99, 50, 101),
-        (2, 'Smartphone X', 'Electronics', 699.99, 120, 102),
-        (3, 'Coffee Maker', 'Appliances', 89.99, 75, 103),
-        (4, 'Running Shoes', 'Sports', 129.99, 200, 104),
-        (5, 'Office Chair', 'Furniture', 249.99, 30, 105),
-        (6, 'Wireless Mouse', 'Electronics', 29.99, 150, 101),
-        (7, 'Water Bottle', 'Sports', 19.99, 300, 104)
+        (1, 'Laptop Pro', 'Electronics', 1299.99, 899.99, 50, 101),
+        (2, 'Smartphone X', 'Electronics', 699.99, 489.99, 120, 102),
+        (3, 'Coffee Maker', 'Appliances', 89.99, 62.99, 75, 103),
+        (4, 'Running Shoes', 'Sports', 129.99, 89.99, 200, 104),
+        (5, 'Office Chair', 'Furniture', 249.99, 174.99, 30, 105),
+        (6, 'Wireless Mouse', 'Electronics', 29.99, 19.99, 150, 101),
+        (7, 'Water Bottle', 'Sports', 19.99, 12.99, 300, 104)
     ]
     
     orders_data = [
@@ -278,7 +282,7 @@ def create_sample_database():
     cursor.executemany('INSERT OR IGNORE INTO customers VALUES (?, ?, ?, ?, ?, ?, ?)', customers_data)
     cursor.executemany('INSERT OR IGNORE INTO categories VALUES (?, ?, ?, ?)', categories_data)
     cursor.executemany('INSERT OR IGNORE INTO suppliers VALUES (?, ?, ?, ?, ?, ?, ?, ?)', suppliers_data)
-    cursor.executemany('INSERT OR IGNORE INTO products VALUES (?, ?, ?, ?, ?, ?)', products_data)
+    cursor.executemany('INSERT OR IGNORE INTO products VALUES (?, ?, ?, ?, ?, ?, ?)', products_data)
     cursor.executemany('INSERT OR IGNORE INTO orders VALUES (?, ?, ?, ?, ?)', orders_data)
     cursor.executemany('INSERT OR IGNORE INTO order_items VALUES (?, ?, ?, ?, ?)', order_items_data)
     cursor.executemany('INSERT OR IGNORE INTO reviews VALUES (?, ?, ?, ?, ?, ?)', reviews_data)
