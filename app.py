@@ -586,7 +586,9 @@ UNDERSTANDING: [What does the user want?]
 TABLES: [Which tables do I need?]
 LOGIC: [My step-by-step approach]
 CONFIDENCE: [Rate my confidence 1-10]
-SQL: [The final query]
+SQL: [The final query - NO COMMENTS, clean executable SQL only]
+
+IMPORTANT: In the SQL section, provide ONLY executable SQL code without any comments or explanations.
 
 User Query: "{user_query}"
 
@@ -637,17 +639,33 @@ def extract_section(text, start_marker, end_marker):
         return text[start_idx:].strip()
 
 def clean_sql(sql):
-    """Clean SQL query"""
+    """Clean SQL query by removing markdown, comments, and formatting properly"""
     if not sql:
         return ""
     
-    # Remove markdown
     import re
+    
+    # Remove markdown
     sql = re.sub(r'```sql\n?', '', sql)
     sql = re.sub(r'```\n?', '', sql)
     
+    # Remove SQL comments (both -- and /* */ style)
+    # Remove single-line comments (-- comment)
+    sql = re.sub(r'--.*$', '', sql, flags=re.MULTILINE)
+    
+    # Remove multi-line comments (/* comment */)
+    sql = re.sub(r'/\*.*?\*/', '', sql, flags=re.DOTALL)
+    
+    # Remove extra whitespace and newlines
+    sql = ' '.join(sql.split())
+    
     # Clean and format
     sql = sql.strip()
+    
+    # Ensure it ends with semicolon for proper execution
+    if sql and not sql.endswith(';'):
+        sql += ';'
+    
     return sql
 
 # AI Agents System
@@ -1003,8 +1021,10 @@ with st.sidebar:
         "What are the most popular product categories?", 
         "List all customers from USA with their email",
         "Show total revenue by month",
-        "Which products are running low in inventory?",
+        "Calculate total profit from all sales",
+        "Which products have the highest profit margins?",
         "Top 5 highest rated products",
+        "Show profit analysis by product category",
         "Payment method distribution across orders",
         "Customers who spent more than $1000",
         "Most recent 20 orders with customer names"
