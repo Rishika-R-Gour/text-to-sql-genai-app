@@ -12,6 +12,19 @@ Experience the application in action! The live demo includes:
 - Real-time SQL generation and execution
 - Interactive data visualizations
 
+## 🖼️ App Screenshots
+
+Save the two screenshots in `assets/screenshots/` with these names:
+
+- `01-query-to-sql.png`
+- `02-results-and-charts.png`
+
+### Query to SQL Generation
+![Query to SQL generation screen](assets/screenshots/01-query-to-sql.png)
+
+### Results and Visualizations
+![Query results and charts](assets/screenshots/02-results-and-charts.png)
+
 ## ✨ Key Features
 
 - **🧠 AI-Powered SQL Generation**: Uses Google Gemini 2.5 Flash for natural language to SQL conversion
