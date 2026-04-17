@@ -7,6 +7,7 @@ import os
 import google.generativeai as genai
 from dotenv import load_dotenv
 import time
+import re
 
 # Import authentication system
 from auth_system import (
@@ -464,7 +465,7 @@ def get_schema():
     return schema
 
 # Configure Gemini
-def setup_gemini():
+def setup_gemini(model_name=None, show_ui_errors=True):
     # Try to get API key from environment variables or Streamlit secrets
     api_key = os.getenv('GEMINI_API_KEY')
     
@@ -476,17 +477,95 @@ def setup_gemini():
             pass
     
     if not api_key:
-        st.error("🚨 GEMINI_API_KEY not found!")
-        st.info("For local development: Add your API key to .env file: `GEMINI_API_KEY=your_key_here`")
-        st.info("For Streamlit Cloud: Add GEMINI_API_KEY to your app's Secrets in the Streamlit dashboard")
+        if show_ui_errors:
+            st.error("🚨 GEMINI_API_KEY not found!")
+            st.info("For local development: Add your API key to .env file: `GEMINI_API_KEY=your_key_here`")
+            st.info("For Streamlit Cloud: Add GEMINI_API_KEY to your app's Secrets in the Streamlit dashboard")
         return None
     
+    selected_model = model_name or os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+
     try:
         genai.configure(api_key=api_key)
-        return genai.GenerativeModel('gemini-2.5-flash')
+        return genai.GenerativeModel(selected_model)
     except Exception as e:
-        st.error(f"Gemini setup error: {e}")
+        if show_ui_errors:
+            st.error(f"Gemini setup error: {e}")
         return None
+
+def get_gemini_model_candidates():
+    """Return model candidates in priority order with duplicates removed."""
+    primary = os.getenv("GEMINI_MODEL", "gemini-2.5-flash").strip()
+    fallback_raw = os.getenv("GEMINI_FALLBACK_MODELS", "gemini-1.5-flash,gemini-1.5-pro")
+    fallback_models = [m.strip() for m in fallback_raw.split(",") if m.strip()]
+
+    candidates = [primary] + fallback_models
+    seen = set()
+    unique_candidates = []
+    for model_name in candidates:
+        if model_name not in seen:
+            seen.add(model_name)
+            unique_candidates.append(model_name)
+
+    return unique_candidates
+
+def is_quota_error(error_text):
+    lowered = error_text.lower()
+    return (
+        "429" in lowered
+        or "quota" in lowered
+        or "rate limit" in lowered
+        or "resource has been exhausted" in lowered
+    )
+
+def extract_retry_delay_seconds(error_text, default_seconds=2.0):
+    """Extract retry delay from provider error text if available."""
+    retry_ms_match = re.search(r"retry\s+in\s+([0-9]+(?:\.[0-9]+)?)\s*ms", error_text, re.IGNORECASE)
+    if retry_ms_match:
+        return max(float(retry_ms_match.group(1)) / 1000.0, 0.1)
+
+    retry_s_match = re.search(r"retry\s+in\s+([0-9]+(?:\.[0-9]+)?)\s*s", error_text, re.IGNORECASE)
+    if retry_s_match:
+        return max(float(retry_s_match.group(1)), 0.1)
+
+    return default_seconds
+
+def generate_content_with_resilience(prompt, purpose="request", max_retries_per_model=2):
+    """Generate model response with retry and model fallback for quota/rate-limit resilience."""
+    model_candidates = get_gemini_model_candidates()
+    last_error_text = "Unknown Gemini error"
+    quota_error_seen = False
+
+    for model_name in model_candidates:
+        model = setup_gemini(model_name=model_name, show_ui_errors=False)
+        if not model:
+            continue
+
+        for attempt in range(1, max_retries_per_model + 1):
+            try:
+                response = model.generate_content(prompt)
+                st.session_state.gemini_last_model = model_name
+                st.session_state.gemini_quota_exceeded = False
+                return response
+            except Exception as e:
+                last_error_text = str(e)
+                if is_quota_error(last_error_text):
+                    quota_error_seen = True
+                    if attempt < max_retries_per_model:
+                        delay_seconds = extract_retry_delay_seconds(last_error_text)
+                        time.sleep(delay_seconds)
+                        continue
+                    break
+                break
+
+    if quota_error_seen:
+        st.session_state.gemini_quota_exceeded = True
+        raise RuntimeError(
+            f"Gemini quota limit reached while processing {purpose}. "
+            "Disable AI Agents or add a higher-quota API key/model and try again."
+        )
+
+    raise RuntimeError(f"Gemini request failed while processing {purpose}: {last_error_text}")
 
 # Chain-of-Thought SQL generation with AI reasoning
 @permission_required(Permission.READ_DATA)
@@ -494,8 +573,7 @@ def generate_sql_with_reasoning(user_query, schema):
     # Store the natural query for logging
     st.session_state.last_natural_query = user_query
     
-    model = setup_gemini()
-    if not model:
+    if not setup_gemini(show_ui_errors=True):
         return None, None
     
     user = get_current_user()
@@ -595,7 +673,7 @@ User Query: "{user_query}"
 Think through this carefully:"""
     
     try:
-        response = model.generate_content(prompt)
+        response = generate_content_with_resilience(prompt, purpose="SQL generation")
         reasoning_text = response.text.strip()
         
         # Parse the structured response
@@ -620,6 +698,8 @@ Think through this carefully:"""
         
     except Exception as e:
         st.error(f"SQL generation error: {e}")
+        if st.session_state.get("gemini_quota_exceeded", False):
+            st.info("Tip: Turn off 'Enable AI Agents' to reduce API calls per query.")
         return None, None
 
 def extract_section(text, start_marker, end_marker):
@@ -672,10 +752,6 @@ def clean_sql(sql):
 @permission_required(Permission.READ_DATA)
 def query_planner_agent(user_query, schema):
     """Breaks complex queries into manageable steps"""
-    model = setup_gemini()
-    if not model:
-        return None
-    
     user = get_current_user()
     
     prompt = f"""You are a Query Planner Agent. Provide a brief analysis.
@@ -688,7 +764,7 @@ Respond in exactly this format:
 🎯 FOCUS: [Main tables/operations needed]"""
     
     try:
-        response = model.generate_content(prompt)
+        response = generate_content_with_resilience(prompt, purpose="planning analysis")
         return response.text.strip()
     except Exception as e:
         return f"Planning error: {e}"
@@ -697,8 +773,7 @@ Respond in exactly this format:
 def validator_agent(sql, results, user_query, execution_time):
     """Validates if results make business sense"""
     try:
-        model = setup_gemini()
-        if not model:
+        if not setup_gemini(show_ui_errors=False):
             return "❌ Gemini model not available"
         
         if results is None or results.empty:
@@ -720,7 +795,7 @@ Respond in exactly this format:
 📊 ACCURACY: [Results look correct/suspicious]
 💡 NOTE: [Brief observation if any]"""
         
-        response = model.generate_content(prompt)
+        response = generate_content_with_resilience(prompt, purpose="result validation")
         return response.text.strip()
         
     except Exception as e:
@@ -730,8 +805,7 @@ Respond in exactly this format:
 def optimizer_agent(sql, execution_time, row_count):
     """Suggests query performance improvements"""
     try:
-        model = setup_gemini()
-        if not model:
+        if not setup_gemini(show_ui_errors=False):
             return "❌ Gemini model not available"
         
         prompt = f"""You are an Optimizer Agent. Quick performance tips.
@@ -743,7 +817,7 @@ Respond in exactly this format:
 🔧 TIP: [One quick optimization suggestion]
 📈 IMPACT: [Low/Medium/High improvement potential]"""
         
-        response = model.generate_content(prompt)
+        response = generate_content_with_resilience(prompt, purpose="query optimization")
         return response.text.strip()
         
     except Exception as e:
@@ -909,6 +983,10 @@ def execute_sql(sql):
 
 def run_ai_agents_after_execution(sql, results, execution_time):
     """Run AI agents after query execution"""
+    if st.session_state.get("gemini_quota_exceeded", False):
+        st.warning("AI agent analysis skipped due to Gemini quota limits.")
+        return
+
     user_query = st.session_state.get('last_natural_query', '')
     row_count = len(results) if results is not None and not results.empty else 0
     
@@ -1009,7 +1087,7 @@ with st.expander("🧠 AI Configuration", expanded=False):
         st.session_state.show_reasoning = show_reasoning
         
     with col2:
-        enable_agents = st.checkbox("🤖 Enable AI Agents", value=True)
+        enable_agents = st.checkbox("🤖 Enable AI Agents", value=False)
         st.session_state.enable_agents = enable_agents
 
 # Simplified Sidebar
@@ -1114,28 +1192,29 @@ with col1:
         with st.spinner("🤖 AI is thinking step by step..."):
             # Use Chain-of-Thought with optional agents
             
-            # Run Query Planner Agent first if enabled
-            if st.session_state.get('enable_agents', True):
-                # Ensure agents_data exists
-                if 'agents_data' not in st.session_state:
-                    st.session_state.agents_data = {}
-                
-                planning = query_planner_agent(user_query, schema)
-                st.session_state.agents_data['planning'] = planning
-            
             # Generate SQL with reasoning
             sql, reasoning = generate_sql_with_reasoning(user_query, schema)
             if sql:
                 st.session_state.generated_sql = sql
                 st.session_state.reasoning = reasoning
                 st.success("✅ SQL generated with AI reasoning!")
+
+                if st.session_state.get("gemini_last_model"):
+                    st.caption(f"Model used: {st.session_state.gemini_last_model}")
+
+                # Run Query Planner Agent only after successful SQL generation
+                if st.session_state.get('enable_agents', False):
+                    if 'agents_data' not in st.session_state:
+                        st.session_state.agents_data = {}
+                    planning = query_planner_agent(user_query, schema)
+                    st.session_state.agents_data['planning'] = planning
                 
                 # Show reasoning if enabled
                 if st.session_state.get('show_reasoning', True):
                     display_reasoning(reasoning)
                 
                 # Show agents analysis if enabled and planning was done
-                if st.session_state.get('enable_agents', True) and st.session_state.agents_data.get('planning'):
+                if st.session_state.get('enable_agents', False) and st.session_state.agents_data.get('planning'):
                     display_agents_analysis(st.session_state.agents_data)
 
 with col2:
@@ -1150,7 +1229,7 @@ with col2:
                 st.session_state.results = results
                 
                 # Show agents analysis after execution if enabled
-                if st.session_state.get('enable_agents', True) and st.session_state.agents_data:
+                if st.session_state.get('enable_agents', False) and st.session_state.agents_data:
                     display_agents_analysis(st.session_state.agents_data)
 
 # Simplified Results Section
