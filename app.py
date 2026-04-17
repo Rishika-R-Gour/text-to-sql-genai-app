@@ -8,6 +8,8 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 import time
 import re
+import hashlib
+import json
 
 # Import authentication system
 from auth_system import (
@@ -483,7 +485,7 @@ def setup_gemini(model_name=None, show_ui_errors=True):
             st.info("For Streamlit Cloud: Add GEMINI_API_KEY to your app's Secrets in the Streamlit dashboard")
         return None
     
-    selected_model = model_name or os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+    selected_model = model_name or os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite")
 
     try:
         genai.configure(api_key=api_key)
@@ -495,8 +497,8 @@ def setup_gemini(model_name=None, show_ui_errors=True):
 
 def get_gemini_model_candidates():
     """Return model candidates in priority order with duplicates removed."""
-    primary = os.getenv("GEMINI_MODEL", "gemini-2.5-flash").strip()
-    fallback_raw = os.getenv("GEMINI_FALLBACK_MODELS", "gemini-1.5-flash,gemini-1.5-pro")
+    primary = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite").strip()
+    fallback_raw = os.getenv("GEMINI_FALLBACK_MODELS", "gemini-2.5-flash")
     fallback_models = [m.strip() for m in fallback_raw.split(",") if m.strip()]
 
     candidates = [primary] + fallback_models
@@ -567,6 +569,65 @@ def generate_content_with_resilience(prompt, purpose="request", max_retries_per_
 
     raise RuntimeError(f"Gemini request failed while processing {purpose}: {last_error_text}")
 
+def get_schema_fingerprint(schema):
+    """Create a stable fingerprint for cache invalidation when schema changes."""
+    serialized = json.dumps(schema, sort_keys=True, default=str)
+    return hashlib.sha256(serialized.encode("utf-8")).hexdigest()
+
+def normalize_user_query(user_query):
+    """Normalize prompt text to improve cache hit rate for equivalent questions."""
+    return " ".join((user_query or "").strip().lower().split())
+
+def get_sql_cache_config():
+    ttl_seconds = int(os.getenv("SQL_CACHE_TTL_SECONDS", "86400"))  # 24 hours
+    max_entries = int(os.getenv("SQL_CACHE_MAX_ENTRIES", "500"))
+    return ttl_seconds, max_entries
+
+def build_sql_cache_key(user_query, schema, user_role):
+    primary_model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite")
+    cache_payload = {
+        "query": normalize_user_query(user_query),
+        "role": str(user_role),
+        "schema": get_schema_fingerprint(schema),
+        "model": primary_model,
+        "version": 1
+    }
+    cache_raw = json.dumps(cache_payload, sort_keys=True)
+    return hashlib.sha256(cache_raw.encode("utf-8")).hexdigest()
+
+def get_cached_sql_result(cache_key):
+    cache_store = st.session_state.get("sql_generation_cache", {})
+    entry = cache_store.get(cache_key)
+    if not entry:
+        return None
+
+    ttl_seconds, _ = get_sql_cache_config()
+    age = time.time() - entry.get("created_at", 0)
+    if age > ttl_seconds:
+        cache_store.pop(cache_key, None)
+        st.session_state.sql_generation_cache = cache_store
+        return None
+
+    return entry
+
+def set_cached_sql_result(cache_key, sql, reasoning, model_used):
+    cache_store = st.session_state.get("sql_generation_cache", {})
+    _, max_entries = get_sql_cache_config()
+
+    cache_store[cache_key] = {
+        "sql": sql,
+        "reasoning": reasoning,
+        "model_used": model_used,
+        "created_at": time.time()
+    }
+
+    # Trim oldest entries if cache grew beyond limit.
+    if len(cache_store) > max_entries:
+        sorted_items = sorted(cache_store.items(), key=lambda item: item[1].get("created_at", 0), reverse=True)
+        cache_store = dict(sorted_items[:max_entries])
+
+    st.session_state.sql_generation_cache = cache_store
+
 # Chain-of-Thought SQL generation with AI reasoning
 @permission_required(Permission.READ_DATA)
 def generate_sql_with_reasoning(user_query, schema):
@@ -577,6 +638,13 @@ def generate_sql_with_reasoning(user_query, schema):
         return None, None
     
     user = get_current_user()
+
+    cache_key = build_sql_cache_key(user_query, schema, user['role'])
+    cached_result = get_cached_sql_result(cache_key)
+    if cached_result:
+        st.session_state.gemini_last_model = cached_result.get("model_used", "cache")
+        st.session_state.last_generation_source = "cache"
+        return cached_result.get("sql"), cached_result.get("reasoning")
     
     # Get role-based AI persona
     def get_ai_persona(role):
@@ -693,6 +761,14 @@ Think through this carefully:"""
             "confidence": confidence,
             "raw_response": reasoning_text
         }
+
+        set_cached_sql_result(
+            cache_key=cache_key,
+            sql=sql,
+            reasoning=reasoning,
+            model_used=st.session_state.get("gemini_last_model", "unknown")
+        )
+        st.session_state.last_generation_source = "ai"
         
         return sql, reasoning
         
@@ -1078,6 +1154,10 @@ if 'selected_query' not in st.session_state:
     st.session_state.selected_query = ""
 if 'force_query_update' not in st.session_state:
     st.session_state.force_query_update = False
+if 'sql_generation_cache' not in st.session_state:
+    st.session_state.sql_generation_cache = {}
+if 'last_generation_source' not in st.session_state:
+    st.session_state.last_generation_source = ""
 
 # Simplified AI Settings
 with st.expander("🧠 AI Configuration", expanded=False):
@@ -1089,6 +1169,12 @@ with st.expander("🧠 AI Configuration", expanded=False):
     with col2:
         enable_agents = st.checkbox("🤖 Enable AI Agents", value=False)
         st.session_state.enable_agents = enable_agents
+
+    cache_count = len(st.session_state.get('sql_generation_cache', {}))
+    st.caption(f"SQL cache entries: {cache_count}")
+    if st.button("🧹 Clear SQL Cache", use_container_width=False):
+        st.session_state.sql_generation_cache = {}
+        st.success("SQL cache cleared")
 
 # Simplified Sidebar
 with st.sidebar:
@@ -1200,7 +1286,11 @@ with col1:
                 st.success("✅ SQL generated with AI reasoning!")
 
                 if st.session_state.get("gemini_last_model"):
-                    st.caption(f"Model used: {st.session_state.gemini_last_model}")
+                    source = st.session_state.get("last_generation_source", "ai")
+                    if source == "cache":
+                        st.caption(f"Served from cache (original model: {st.session_state.gemini_last_model})")
+                    else:
+                        st.caption(f"Model used: {st.session_state.gemini_last_model}")
 
                 # Run Query Planner Agent only after successful SQL generation
                 if st.session_state.get('enable_agents', False):
